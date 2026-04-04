@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediClass — Medical Report Classification</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #F7F6F2;
+      --surface:   #FFFFFF;
+      --border:    #E2DED6;
+      --border-2:  #CCC9BF;
+      --text:      #1A1917;
+      --muted:     #6D6B65;
+      --faint:     #A8A59E;
+      --accent:    #1B5E50;
+      --accent-2:  #2E7D68;
+      --accent-lt: #E8F2EF;
+      --accent-dk: #0F3D32;
+      --warn:      #B07D2E;
+      --warn-lt:   #FAF3E6;
+      --r-sm: 8px;
+      --r-md: 14px;
+      --r-lg: 24px;
+    }
+
+    html, body {
+      min-height: 100vh;
+      font-family: 'Geist', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 36px;
+      flex-shrink: 0;
+    }
+
+    .brand-wrap { display: flex; align-items: center; gap: 12px; }
+
+    .logo {
+      width: 32px; height: 32px;
+      background: var(--accent);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo svg { width: 17px; height: 17px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .brand { font-family: 'Instrument Serif', serif; font-size: 1.25rem; color: var(--text); letter-spacing: -.01em; }
+    .brand em { font-style: italic; color: var(--accent-2); }
+
+    .top-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--accent); background: var(--accent-lt);
+      border: 1px solid #B2D4CB; border-radius: 99px; padding: 3px 12px;
+    }
+    .dot-live { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-2); animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    /* PAGE */
+    .page {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+
+    .center-col {
+      width: 100%;
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .page-heading { margin-bottom: 8px; }
+    .page-heading h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.85rem;
+      color: var(--text);
+      letter-spacing: -.02em;
+      line-height: 1.2;
+    }
+    .page-heading p { font-size: 13px; color: var(--muted); margin-top: 6px; }
+
+    /* CARD */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    .card-head { padding: 18px 24px 14px; border-bottom: 1px solid var(--border); }
+    .ch-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--faint); margin-bottom: 2px; }
+    .ch-title { font-family: 'Instrument Serif', serif; font-size: 1.1rem; color: var(--text); }
+
+    .card-body { padding: 22px 24px; display: flex; flex-direction: column; gap: 14px; }
+
+    /* Textarea */
+    textarea {
+      width: 100%;
+      min-height: 220px;
+      resize: vertical;
+      font-family: 'Geist Mono', monospace;
+      font-size: 12.5px;
+      line-height: 1.8;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color .15s;
+    }
+    textarea::placeholder { color: var(--faint); }
+    textarea:focus { border-color: var(--accent-2); }
+
+    /* Or divider */
+    .or-row { display: flex; align-items: center; gap: 12px; }
+    .or-row::before, .or-row::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .or-row span { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
+
+    /* File upload */
+    .upload-zone {
+      display: flex; align-items: center; gap: 14px;
+      padding: 13px 16px;
+      background: var(--bg);
+      border: 1.5px dashed var(--border-2);
+      border-radius: var(--r-sm);
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
+    }
+    .upload-zone:hover { border-color: var(--accent-2); background: var(--accent-lt); }
+
+    .upload-icon {
+      width: 38px; height: 38px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .upload-icon svg { width: 18px; height: 18px; stroke: var(--muted); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    .upload-text strong { display: block; font-size: 13px; font-weight: 500; color: var(--text); }
+    .upload-text small { font-size: 11px; color: var(--faint); }
+
+    input[type="file"] { display: none; }
+
+    /* Button */
+    .btn-run {
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      width: 100%; padding: 14px;
+      background: var(--accent); color: #fff;
+      font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 500;
+      border: none; border-radius: var(--r-sm); cursor: pointer;
+      transition: background .15s, transform .1s;
+      letter-spacing: .01em;
+    }
+    .btn-run:hover { background: var(--accent-2); }
+    .btn-run:active { transform: scale(.99); }
+    .btn-run svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .btn-run:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    /* Spinner */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      flex-shrink: 0;
+    }
+
+    /* RESULT CARD */
+    .result-card {
+      border-radius: var(--r-lg);
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: all .35s ease;
+    }
+
+    /* idle state */
+    .result-card.state-idle {
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    /* loading state */
+    .result-card.state-loading {
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    /* success state */
+    .result-card.state-success {
+      background: var(--accent-dk);
+      border: none;
+    }
+
+    /* error state */
+    .result-card.state-error {
+      background: var(--warn-lt);
+      border: 1px solid #E0C97A;
+    }
+
+    /* Icon circle */
+    .rc-icon {
+      width: 52px; height: 52px; flex-shrink: 0; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .state-idle    .rc-icon { background: var(--bg); }
+    .state-loading .rc-icon { background: var(--accent-lt); }
+    .state-success .rc-icon { background: rgba(60,184,138,.15); }
+    .state-error   .rc-icon { background: rgba(176,125,46,.15); }
+
+    .rc-icon svg { width: 24px; height: 24px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .state-idle    .rc-icon svg { stroke: var(--faint); }
+    .state-loading .rc-icon svg { stroke: var(--accent-2); }
+    .state-success .rc-icon svg { stroke: #3CB88A; }
+    .state-error   .rc-icon svg { stroke: var(--warn); }
+
+    /* Loading spinner in icon */
+    .rc-spinner {
+      width: 24px; height: 24px;
+      border: 2px solid rgba(46,125,104,.2);
+      border-top-color: var(--accent-2);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+
+    /* Text */
+    .rc-text { flex: 1; }
+
+    .rc-eyebrow {
+      font-size: 10px; font-weight: 600; letter-spacing: .13em;
+      text-transform: uppercase; margin-bottom: 4px;
+    }
+    .state-idle    .rc-eyebrow { color: var(--faint); }
+    .state-loading .rc-eyebrow { color: var(--accent); opacity: .8; }
+    .state-success .rc-eyebrow { color: #C8E8E0; opacity: .55; }
+    .state-error   .rc-eyebrow { color: var(--warn); opacity: .8; }
+
+    .rc-department {
+      line-height: 1.15;
+    }
+    .state-idle    .rc-department { font-size: 13.5px; color: var(--faint); font-family: 'Geist', sans-serif; }
+    .state-loading .rc-department { font-size: 13.5px; color: var(--muted); font-family: 'Geist', sans-serif; }
+    .state-success .rc-department { font-family: 'Instrument Serif', serif; font-size: 1.9rem; color: #E8F5F1; }
+    .state-error   .rc-department { font-size: 13.5px; color: var(--warn); font-family: 'Geist', sans-serif; }
+
+    .rc-conf {
+      margin-top: 6px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      color: #3CB88A;
+      display: none;
+    }
+
+    .rc-conf-bar-wrap {
+      margin-top: 10px;
+      display: none;
+    }
+    .rc-conf-bar-track {
+      height: 3px;
+      background: rgba(60,184,138,.2);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .rc-conf-bar-fill {
+      height: 100%;
+      background: #3CB88A;
+      border-radius: 99px;
+      width: 0%;
+      transition: width .6s ease;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      flex-shrink: 0;
+    }
+    footer p { font-size: 11px; color: var(--faint); }
+
+    @media (max-width: 600px) {
+      .topbar { padding: 0 20px; }
+      .page { padding: 28px 16px; }
+      .card-body { padding: 18px; }
+      .result-card { padding: 20px; gap: 16px; }
+      .state-success .rc-department { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="brand-wrap">
+      <div class="logo">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <span class="brand">Medi<em>Class</em></span>
+    </div>
+    <div class="top-badge">
+      <span class="dot-live"></span>AI Classification
+    </div>
+  </header>
+
+  <!-- PAGE -->
+  <div class="page">
+    <div class="center-col">
+
+      <div class="page-heading">
+        <h1>Which department does this report belong to?</h1>
+        <p>Paste a medical report and the system will read it and identify the correct department instantly.</p>
+      </div>
+
+      <!-- Input card -->
+      <div class="card">
+        <div class="card-head">
+          <p class="ch-eyebrow">Report Input</p>
+          <h2 class="ch-title">Enter Medical Report</h2>
+        </div>
+        <div class="card-body">
+          <textarea
+            id="reportText"
+            placeholder="Paste the medical report here — clinical notes, operative summary, discharge notes, radiology findings, SOAP notes…"
+            spellcheck="false"
+          ></textarea>
+
+          <div class="or-row"><span>or upload PDF</span></div>
+
+          <label class="upload-zone" for="pdfFile">
+            <div class="upload-icon">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+            </div>
+            <div class="upload-text">
+              <strong>Upload PDF report</strong>
+              <small id="fileLabel">Click to browse — PDF only, max 10 MB</small>
+            </div>
+          </label>
+          <input type="file" id="pdfFile" accept="application/pdf" />
+
+          <button class="btn-run" id="classifyBtn" onclick="classifyReport()">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Identify Department
+          </button>
+        </div>
+      </div>
+
+      <!-- Result card -->
+      <div class="result-card state-idle" id="resultCard">
+        <div class="rc-icon" id="rcIcon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="rc-text">
+          <p class="rc-eyebrow" id="rcEyebrow">Awaiting Report</p>
+          <p class="rc-department" id="rcDepartment">Submit a report to see the department</p>
+          <p class="rc-conf" id="rcConf"></p>
+          <div class="rc-conf-bar-wrap" id="rcBarWrap">
+            <div class="rc-conf-bar-track">
+              <div class="rc-conf-bar-fill" id="rcBarFill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>MediClass &mdash; AI Medical Report Classification &nbsp;&middot;&nbsp; For research and educational use only</p>
+  </footer>
+
+  <script>
+  /* ── File label update ── */
+  document.getElementById('pdfFile').addEventListener('change', function () {
+    document.getElementById('fileLabel').textContent =
+      this.files.length ? this.files[0].name : 'Click to browse — PDF only, max 10 MB';
+  });
+
+  /* ── UI state helpers (same as your code) ── */
+  function setState(state, department, confidence) {
+    const card   = document.getElementById('resultCard');
+    const icon   = document.getElementById('rcIcon');
+    const eyebrow = document.getElementById('rcEyebrow');
+    const dept   = document.getElementById('rcDepartment');
+    const conf   = document.getElementById('rcConf');
+    const bar    = document.getElementById('rcBarWrap');
+    const fill   = document.getElementById('rcBarFill');
+    const btn    = document.getElementById('classifyBtn');
+
+    card.className = 'result-card state-' + state;
+
+    if (state === 'loading') {
+      icon.innerHTML = '<div class="rc-spinner"></div>';
+      eyebrow.textContent  = 'Analysing Report';
+      dept.textContent     = 'Reading and classifying the report…';
+      conf.style.display   = 'none';
+      bar.style.display    = 'none';
+      btn.disabled = true;
+      btn.innerHTML = '<div class="spinner"></div> Classifying…';
+    }
+
+    else if (state === 'success') {
+      icon.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
+      eyebrow.textContent = 'Department';
+      dept.textContent    = department;
+      conf.textContent    = 'Model confidence: ' + confidence + '%';
+      conf.style.display  = 'block';
+      bar.style.display   = 'block';
+      setTimeout(() => { fill.style.width = confidence + '%'; }, 50);
+      btn.disabled = false;
+      btn.innerHTML = 'Identify Department';
+    }
+
+    else if (state === 'error') {
+      icon.innerHTML = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>';
+      eyebrow.textContent = 'Error';
+      dept.textContent    = department || 'Something went wrong.';
+      conf.style.display  = 'none';
+      bar.style.display   = 'none';
+      btn.disabled = false;
+      btn.innerHTML = 'Identify Department';
+    }
+  }
+
+  /* ── FINAL WORKING FUNCTION ── */
+  async function classifyReport() {
+
+    const text = document.getElementById('reportText').value.trim();
+    const fileInput = document.getElementById('pdfFile');
+
+    // Validation
+    if (!text && fileInput.files.length === 0) {
+      setState('error', 'Please paste text or upload PDF');
+      return;
+    }
+
+    setState('loading');
+
+    try {
+      let formData = new FormData();
+
+      if (fileInput.files.length > 0) {
+        formData.append("file", fileInput.files[0]);
+      } else {
+        formData.append("text", text);
+      }
+
+      const res = await fetch('/predict', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await res.json();
+
+      if (data.error) {
+        setState('error', data.error);
+      } else {
+        setState('success', data.prediction, data.confidence);
+      }
+
+    } catch (err) {
+      console.error(err);
+      setState('error', 'Server error. Check Flask.');
+    }
+  }
+
+  document.getElementById('reportText').addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.key === 'Enter') classifyReport();
+  });
+</script>
+</body>
+</html>

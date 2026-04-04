@@ -1,0 +1,240 @@
+text,label
+stomach pain and acidity,Gastroenterology
+abdominal cramps and vomiting,Gastroenterology
+bloating and indigestion after meals,Gastroenterology
+gastritis and stomach discomfort,Gastroenterology
+nausea and frequent vomiting,Gastroenterology
+
+chest pain and shortness of breath,Cardiology
+heart palpitations and irregular heartbeat,Cardiology
+high blood pressure and dizziness,Cardiology
+pain in chest while walking,Cardiology
+swelling in legs due to heart problem,Cardiology
+
+severe headache and dizziness,Neurology
+migraine with nausea,Neurology
+loss of balance and coordination,Neurology
+numbness in hands and legs,Neurology
+frequent seizures and confusion,Neurology
+
+joint pain and knee stiffness,Orthopedics
+fracture in leg and swelling,Orthopedics
+back pain due to posture issue,Orthopedics
+muscle pain after injury,Orthopedics
+difficulty walking due to joint pain,Orthopedics
+
+skin rash and itching,Dermatology
+acne and skin irritation,Dermatology
+dry skin and redness,Dermatology
+allergic skin reaction,Dermatology
+fungal infection on skin,Dermatology
+
+cough and breathing difficulty,Pulmonology
+asthma and wheezing,Pulmonology
+lung infection with fever,Pulmonology
+shortness of breath at night,Pulmonology
+chronic cough with mucus,Pulmonology
+
+fever and body weakness,General Medicine
+fatigue and tiredness,General Medicine
+viral infection symptoms,General Medicine
+body pain and mild fever,General Medicine
+loss of appetite and weakness,General Medicine
+
+high blood sugar levels,Endocrinology
+thyroid imbalance and weight gain,Endocrinology
+diabetes with frequent urination,Endocrinology
+hormonal imbalance issues,Endocrinology
+low insulin levels,Endocrinology
+
+ear pain and hearing loss,ENT
+sore throat and sinus infection,ENT
+nasal congestion and cold,ENT
+tonsillitis and throat pain,ENT
+ear infection and discharge,ENT
+
+blurred vision and eye pain,Ophthalmology
+redness in eyes and irritation,Ophthalmology
+vision loss gradually,Ophthalmology
+dry eyes and strain,Ophthalmology
+eye infection and swelling,Ophthalmology
+
+stomach pain after eating spicy food,Gastroenterology
+acid reflux and burning sensation in chest,Gastroenterology
+constipation and abdominal discomfort,Gastroenterology
+diarrhea and dehydration,Gastroenterology
+ulcer pain in stomach,Gastroenterology
+
+tightness in chest and fatigue,Cardiology
+shortness of breath during exercise,Cardiology
+rapid heartbeat after minimal activity,Cardiology
+pressure in chest spreading to arm,Cardiology
+heart pain with sweating,Cardiology
+
+sudden loss of speech,Neurology
+difficulty concentrating and confusion,Neurology
+tingling sensation in body,Neurology
+uncontrolled shaking of hands,Neurology
+loss of memory episodes,Neurology
+
+shoulder pain and stiffness,Orthopedics
+pain in joints after exercise,Orthopedics
+swelling in ankle joint,Orthopedics
+bone fracture after fall,Orthopedics
+lower back pain when sitting,Orthopedics
+
+itchy red patches on skin,Dermatology
+skin peeling and dryness,Dermatology
+dark spots and pigmentation,Dermatology
+burning sensation on skin,Dermatology
+hair loss and dandruff,Dermatology
+
+difficulty breathing while lying down,Pulmonology
+persistent cough for weeks,Pulmonology
+chest congestion and mucus,Pulmonology
+breathing issues during sleep,Pulmonology
+wheezing sound while breathing,Pulmonology
+
+mild fever with chills,General Medicine
+body aches and weakness,General Medicine
+seasonal flu symptoms,General Medicine
+low energy and dizziness,General Medicine
+infection with fatigue,General Medicine
+
+sudden weight gain due to hormones,Endocrinology
+excessive thirst and hunger,Endocrinology
+irregular thyroid levels,Endocrinology
+hormone imbalance causing fatigue,Endocrinology
+sugar fluctuations in blood,Endocrinology
+
+ringing in ears,ENT
+blocked nose and headache,ENT
+pain while swallowing,ENT
+voice hoarseness,ENT
+sinus pressure and facial pain,ENT
+
+eye redness after screen use,Ophthalmology
+blurred vision at night,Ophthalmology
+itchy eyes and watering,Ophthalmology
+sensitivity to light,Ophthalmology
+difficulty focusing on objects,Ophthalmology
+
+burning sensation during urination,Urology
+frequent urge to urinate,Urology
+kidney stone pain,Urology
+blood in urine,Urology
+lower abdominal urinary pain,Urology
+
+irregular periods and cramps,Gynecology
+pelvic pain during menstruation,Gynecology
+pregnancy-related nausea,Gynecology
+hormonal menstrual imbalance,Gynecology
+heavy menstrual bleeding,Gynecology
+
+toothache and sensitivity,Dentistry
+bleeding gums,Dentistry
+cavities causing pain,Dentistry
+swollen gums,Dentistry
+bad breath and oral infection,Dentistry
+
+depression and sadness,Psychiatry
+anxiety and panic attacks,Psychiatry
+sleep disturbance and stress,Psychiatry
+lack of interest in activities,Psychiatry
+mood swings and irritability,Psychiatry
+
+fever with rash,General Medicine
+vomiting and dehydration,General Medicine
+weak immune symptoms,General Medicine
+infection with chills,General Medicine
+general illness and fatigue,General Medicine
+
+severe stomach cramps after meals,Gastroenterology
+burning sensation in upper abdomen,Gastroenterology
+gas buildup and bloating,Gastroenterology
+loose motions and stomach pain,Gastroenterology
+indigestion with nausea,Gastroenterology
+
+chest discomfort during stress,Cardiology
+irregular pulse rate,Cardiology
+heart beating too fast,Cardiology
+pain in left side of chest,Cardiology
+breathlessness with chest tightness,Cardiology
+
+frequent headaches in morning,Neurology
+difficulty speaking clearly,Neurology
+sudden blackout episodes,Neurology
+loss of coordination while walking,Neurology
+tremors in hands,Neurology
+
+pain in wrist joint,Orthopedics
+stiffness in neck,Orthopedics
+difficulty bending knee,Orthopedics
+muscle swelling after workout,Orthopedics
+bone pain during movement,Orthopedics
+
+skin irritation due to allergy,Dermatology
+red bumps on skin,Dermatology
+itching between fingers,Dermatology
+skin infection with pus,Dermatology
+sunburn and redness,Dermatology
+
+shortness of breath after walking,Pulmonology
+chest tightness while breathing,Pulmonology
+dry cough for long time,Pulmonology
+lung congestion symptoms,Pulmonology
+difficulty inhaling deeply,Pulmonology
+
+fever with headache,General Medicine
+weakness after illness,General Medicine
+body pain with cold,General Medicine
+tiredness and mild fever,General Medicine
+general viral symptoms,General Medicine
+
+weight loss due to hormonal issues,Endocrinology
+high glucose levels,Endocrinology
+thyroid swelling in neck,Endocrinology
+low energy due to hormone imbalance,Endocrinology
+excess sweating due to hormones,Endocrinology
+
+ear blockage feeling,ENT
+runny nose and sneezing,ENT
+pain in ear while sleeping,ENT
+throat dryness and irritation,ENT
+difficulty hearing clearly,ENT
+
+eye strain due to screen,Ophthalmology
+watering eyes frequently,Ophthalmology
+pain behind eyes,Ophthalmology
+blurred vision while reading,Ophthalmology
+eye redness after dust exposure,Ophthalmology
+
+pain in lower abdomen while urinating,Urology
+frequent urination at night,Urology
+burning urine sensation,Urology
+kidney pain in back,Urology
+urinary tract infection symptoms,Urology
+
+missed menstrual cycles,Gynecology
+pain during periods,Gynecology
+hormonal imbalance affecting cycles,Gynecology
+pregnancy discomfort symptoms,Gynecology
+abdominal pain during menstruation,Gynecology
+
+tooth sensitivity to cold,Dentistry
+gum swelling and pain,Dentistry
+pain while chewing food,Dentistry
+tooth decay symptoms,Dentistry
+oral infection and swelling,Dentistry
+
+panic attacks and fear,Psychiatry
+mental stress and anxiety,Psychiatry
+trouble sleeping at night,Psychiatry
+feeling low and hopeless,Psychiatry
+emotional imbalance,Psychiatry
+
+chills with fever,General Medicine
+infection causing weakness,General Medicine
+body ache and fatigue,General Medicine
+loss of strength,General Medicine
+mild infection symptoms,General Medicine
